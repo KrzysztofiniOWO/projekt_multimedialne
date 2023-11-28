@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Webpage</title>
+    <link rel="stylesheet" href="{% static '../static/style.css' %}">
+</head>
+<body>
+    <header>
+        <a href="{% url 'index' %}" class="logo-link">
+            <div class="header-left">
+                <img class="logo-image" src="{% static 'logo.png' %}" alt="Logo">
+                <h1 class="logo-text">PassItOn</h1>
+            </div>
+        </a>
+        <div class="header-right">
+            {% if user.is_authenticated %}
+                <div class="user-info">
+                    <p class="hello-text">Hello {{ user.username }}</p>
+                    <a href="{% url 'logout_action' %}" class="logout-btn">Logout</a>
+                </div>
+            {% else %}
+                <a href="{% url 'login_page' %}" class="login-btn">Login</a>
+                <a href="{% url 'register_page' %}" class="register-btn">Register</a>
+            {% endif %}
+        </div>
+    </header>
+    <a href="{% url 'index' %}" class="go-back-link">
+        <div class="go-back-button">
+            <button class="go-back-button">Go back</button>
+        </div>
+    </a>
+    <form method="post" action="{% url 'add_offer' %}" enctype="multipart/form-data" class="add-offer-form">
+        {% csrf_token %}
+        <h2>Add Offer</h2>
+    
+        <label for="item_name">Item Name:</label>
+        <input type="text" id="item_name" name="item_name" required><br><br>
+    
+        <label for="item_description">Item Description:</label>
+        <textarea id="item_description" name="item_description" required></textarea><br><br>
+    
+        <label for="item_image">Item Image:</label>
+        <input type="file" id="item_image" name="item_image" accept="image/*" required><br><br>
+    
+        <label for="item_price">Item Price:</label>
+        <input type="number" id="item_price" name="item_price" step="0.01" required><br><br>
+    
+        <input type="submit" value="Add Offer">
+    </form>    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>Contact us: info@example.com | +123 456 7890</p>
+            </div>
+            <div class="footer-contact">
+                <table>
+                    <tr>
+                        <td>Email:</td>
+                        <td>info@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td>+123 456 7890</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,454 @@
+/* Colors i use
+
+.first-color { 
+	background: #edf7fa; whitish
+}
+	
+.second-color { 
+	background: #5f6caf; purplish
+}
+
+.third-color { 
+	background: #ffb677; light orange
+}
+
+.fourth-color { 
+	background: #ff8364; dark orange
+}
+
+*/
+
+/* Reset default */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #edf7fa; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header left side */
+header {
+    background-color: #5f6caf;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-image {
+    width: 40px;
+    height: auto;
+    margin-right: 3px;
+}
+
+.header-left {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #ff8364;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.header-left h1 {
+    font-size: 20px;
+    margin: 10px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-text {
+    color: black;
+    text-decoration: none;
+}
+
+/* Header right side */
+.header-right {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.hello-text {
+    margin-right: 16px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.logout-btn {
+    background-color: #ff8364;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    padding: 12px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login-btn,
+.register-btn {
+    margin-left: 16px;
+    background-color: #ff8364;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    padding: 12px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Add offer button */
+.add-offer-button {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.add-offer-button button {
+    margin-top: 20px;
+    margin-left: 30px;
+    background-color: #ff8364;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+/* Go back button */
+.go-back-button {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.go-back-button button {
+    margin-top: 20px;
+    margin-left: 30px;
+    background-color: #ff8364;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+.user-registration-form {
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    padding: 20px;
+    border: 3px solid #ff8364;
+    border-radius: 10px;
+    background-color: #5f6caf;
+}
+
+.user-registration-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.user-registration-form label {
+    width: 100%;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+}
+
+.user-registration-form input[type="text"],
+.user-registration-form input[type="email"],
+.user-registration-form input[type="password"],
+.user-registration-form input[type="date"],
+.user-registration-form input[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 25px;
+    border: 2px solid #ff8364;
+    border-radius: 5px;
+    background-color: #ffb677;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+.user-registration-form input[type="submit"] {
+    margin-top: 25px;
+}
+
+.user-registration-form input[type="submit"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Search form */
+.search-container {
+    background: #edf7fa;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-text {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #ff8364;
+    border-radius: 5px;
+    background-color: #edf7fa;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-btn {
+    padding: 10px 15px;
+    background-color: #ff8364;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #ff8364;
+}
+
+/* Login form */
+.user-login-form {
+    margin: 50px auto;
+    width: 300px;
+    padding: 20px;
+    border: 3px solid #ff8364;
+    border-radius: 10px;
+    background-color: #5f6caf;
+    box-sizing: border-box;
+}
+
+.user-login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.user-login-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.user-login-form input[type="text"],
+.user-login-form input[type="password"] {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #ff8364;
+    border-radius: 5px;
+    background-color: #ffb677;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.user-login-form input[type="submit"] {
+    width: calc(100% - 40px);
+    padding: 10px;
+    border: 2px solid #ff8364;
+    border-radius: 5px;
+    background-color: #ffb677;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+/* Add offer form */
+.add-offer-form {
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    padding: 20px;
+    border: 3px solid #ff8364;
+    border-radius: 10px;
+    background-color: #5f6caf;
+}
+
+.add-offer-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.add-offer-form label {
+    width: 100%;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.add-offer-form input[type="text"],
+.add-offer-form input[type="number"],
+.add-offer-form input[type="file"],
+.add-offer-form textarea,
+.add-offer-form input[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    border: 2px solid #ff8364;
+    border-radius: 5px;
+    background-color: #ffb677;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+.add-offer-form input[type="submit"] {
+    width: 100%;
+    background-color: #ffb677;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Offer list header */
+.offer-list-header {
+    text-align: center;
+    margin: 20px 0;/
+}
+
+.offer-list-header h2 {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    border: 5px solid #5f6caf;
+    background-color: #ffb677;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 0;
+}
+
+/* List of offers */
+.offer-list {
+    padding: 15px;
+}
+
+.offer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.offer-box {
+    border: 5px solid #5f6caf;
+    padding: 15px;
+    flex: 1 1 300px;
+    background-color: #ffb677;
+    color: black;
+    border-radius: 8px;
+}
+
+.offer-box img {
+    width: 50%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.offer-box h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+.offer-box p {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 8px;
+}
+
+.offer-box p:first-child {
+    margin-top: 0;
+}
+
+/* Footer */
+footer {
+    background-color: #5f6caf;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-content p {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+footer table {
+    margin-left: 10px;
+}
+
+footer table td {
+    padding: 5px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+
+main {
+    flex: 1;
+    margin-bottom: 60px;
+    overflow: auto;
+}
