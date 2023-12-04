@@ -8,55 +8,13 @@
 </head>
 <body>
     <header>
-        <a href="{% url 'index' %}" class="logo-link">
-            <div class="header-left">
-                <img class="logo-image" src="{% static 'logo.png' %}" alt="Logo">
-                <h1 class="logo-text">PassItOn</h1>
-            </div>
-        </a>
-        <div class="header-right">
-            {% if user.is_authenticated %}
-                <div class="user-info">
-                    <p class="hello-text">Hello {{ user.username }}</p>
-                    <a href="{% url 'logout_action' %}" class="logout-btn">Logout</a>
-                </div>
-            {% else %}
-                <a href="{% url 'login_page' %}" class="login-btn">Login</a>
-                <a href="{% url 'register_page' %}" class="register-btn">Register</a>
-            {% endif %}
-        </div>
     </header>
-    <a href="{% url 'add_offer_page' %}" class="add-offer-link">
-        <div class="add-offer-button">
-            <button>Add offer +</button>
-        </div>
-    </a>
-    <div class="search-container">
-        <p class="search-text">What are you looking for?</p>
-        <form method="GET" action="{% url 'offers_after_search_page' %}" class="search-form">
-            {% csrf_token %}
-            <input type="text" name="search_query" class="search-input" placeholder="Search...">
-            <button type="submit" class="search-btn">Search</button>
-        </form>
+    <div class="centered-buttons">
+        <a href="{% url 'call_page' %}"><button class="green-button">Zamów posiłek</button></a>
+        <a href="{% url 'call_page' %}"><button class="green-button">Wezwij kelnera</button></a>
+        <a href="{% url 'call_page' %}"><button class="green-button">Zapłać</button></a>
+        <a href="{% url 'menu_page' %}"><button class="green-button">Wyświetl menu</button></a>
+        <a href="{% url 'newsletter_page' %}"><button class="yellow-button">Zapisz się do newslettera</button></a>
     </div>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-text">
-                <p>Contact us: info@example.com | +123 456 7890</p>
-            </div>
-            <div class="footer-contact">
-                <table>
-                    <tr>
-                        <td>Email:</td>
-                        <td>info@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>Phone:</td>
-                        <td>+123 456 7890</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>

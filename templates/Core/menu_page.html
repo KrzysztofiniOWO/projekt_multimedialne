@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twoja Podstrona</title>
+    <link rel="stylesheet" href="{% static '../static/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <img src="{% static 'spaghetti.jpg' %}" alt="Zdjęcie dania">
+            <h2>Spaghetti</h2>
+            <p>Opis spaghetti</p>
+        </div>
+        <div class="box">
+            <img src="{% static 'bigos.jpg' %}" alt="Zdjęcie dania">
+            <h2>Bigos</h2>
+            <p>Opis bigosu</p>
+        </div>
+        <div class="box">
+            <img src="{% static 'schabowy.jpg' %}" alt="Zdjęcie dania">
+            <h2>Schabowy</h2>
+            <p>Opis schabowego</p>
+        </div>
+        <div class="box">
+            <img src="{% static 'gulasz.jpg' %}" alt="Zdjęcie dania">
+            <h2>Gulasz</h2>
+            <p>Opis gulaszu</p>
+        </div>
+        <div class="box">
+            <img src="{% static 'zupa_pomidorowa.jpg' %}" alt="Zdjęcie dania">
+            <h2>Zupa pomidorowa</h2>
+            <p>Opis zupy</p>
+        </div>
+        <div class="box">
+            <img src="{% static 'zupa_grzybowa.jpg' %}" alt="Zdjęcie dania">
+            <h2>Zupa grzybowa</h2>
+            <p>Opis zupy</p>
+        </div>
+        <a href="{% url 'go_back_action' %}"><button class="green-button">Wróć do ekranu głównego</button></a>
+    </div>
+</body>
+</html>
