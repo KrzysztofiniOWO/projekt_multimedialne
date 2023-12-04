@@ -47,7 +47,7 @@ AUTHENTICATION_BACKENDS =[
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-AUTH_USER_MODEL = 'Users.CustomUser'
+AUTH_USER_MODEL = 'auth.User'
 
 MIDDLEWARE_CLASSES = (
     '...',
