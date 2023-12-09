@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Webpage</title>
+    <link rel="stylesheet" href="{% static '../static/style.css' %}">
+</head>
+<body>
+    <header>
+    </header>
+    <div class="centered-buttons">
+        <input type="text" placeholder="Wprowadź numer stolika" class="text-input">
+        <input type="text" placeholder="Wprowadź numer zamówienia" class="text-input">
+        <a href="{% url 'kelner_go_back_action' %}"><button class="green-button">Wróć do ekranu głównego</button></a>
+        <a href="{% url 'kelner_go_back_action' %}"><button class="green-button">Wyślij rachunek</button></a>
+    </div>
+</body>
+</html>
