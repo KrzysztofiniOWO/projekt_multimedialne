@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Webpage</title>
+    <link rel="stylesheet" href="{% static '../static/style.css' %}">
+</head>
+<body>
+    <header>
+    </header>
+    <div class="centered-buttons">
+        <a href="{% url 'kelner_menu' %}"><button class="green-button">Wyświetl menu</button></a>
+        <a href="{% url 'kelner_map' %}"><button class="green-button">Wyświetl mapę lokalu</button></a>
+        <a href="{% url 'kelner_add_order' %}"><button class="green-button">Wprowadź zamówienie</button></a>
+        <a href="{% url 'kelner_receipt' %}"><button class="green-button">Wyślij rachunek</button></a>
+    </div>
+</body>
+</html>

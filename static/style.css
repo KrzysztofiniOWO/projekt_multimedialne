@@ -170,3 +170,40 @@ label {
     display: block;
     margin-bottom: 10px;
 }
+
+/* Obraz */
+.header-image {
+    width: 100%; /* Ustawienie szerokości na 100% */
+    height: auto; /* Ustawienie wysokości automatycznie, proporcjonalnie do szerokości */
+    display: block; /* Element blokowy */
+    position: absolute; /* Ustawienie pozycji absolutnej */
+    top: 0; /* Przyklejenie do góry */
+    left: 0; /* Przyklejenie do lewej */
+    z-index: -1; /* Ustawienie z-index niższy niż reszta zawartości */
+}
+
+/* Przycisk */
+.centered-buttons {
+    position: relative; /* Ustawienie pozycji relatywnej */
+    margin-top: 200px; /* Zapewnienie wystarczającej przestrzeni nad przyciskiem */
+}
+
+/* Style dla małego przycisku */
+.small-button {
+    background-color: green; /* Zmiana koloru tła na zielony */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.text-input {
+    margin-bottom: 10px; /* Dodanie odstępu na dole */
+    display: block; /* Każde pole input jako osobny blok */
+}
