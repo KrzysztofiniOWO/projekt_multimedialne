@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Webpage</title>
+    <link rel="stylesheet" href="{% static '../static/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <img class="header-image" src="{% static 'mapa.png' %}" alt="Duże Zdjęcie">
+        <div class="centered-buttons">
+            <a href="{% url 'kelner_go_back_action' %}">
+                <button class="green-button">Wróć do głównego menu</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

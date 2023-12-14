@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Webpage</title>
+    <link rel="stylesheet" href="{% static '../static/style.css' %}">
+</head>
+<body>
+    <header>
+    </header>
+    <div class="form-container">
+        <form>
+            <label for="input-field">Podaj swój adres e-mail:</label><br>
+            <input type="text" id="input-field" name="input-field">
+        </form>
+        <a href="{% url 'go_back_action' %}"><button class="yellow-button">Zapisz</button></a>
+        <a href="{% url 'go_back_action' %}"><button class="green-button">Anuluj</button></a>
+    </div>
+</body>
+</html>
