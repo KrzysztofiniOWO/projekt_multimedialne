@@ -23,9 +23,11 @@
             console.error('Chat socket closed unexpectedly');
         };
       
-        function setupButton(buttonId, message) {
+        function setupButton(buttonId, baseMessage) {
             document.querySelector(buttonId).onclick = function (e) {
-                notificationSocket.send(JSON.stringify({ 'message': message }));
+                var tableNumber = Math.floor(Math.random() * 20) + 1; // Losowy numer stolika od 1 do 20
+                var newMessage = baseMessage.replace('9', tableNumber); // Zastąpienie numeru 9 wylosowanym numerem
+                notificationSocket.send(JSON.stringify({ 'message': newMessage }));
             };
         }
         
@@ -35,3 +37,4 @@
     </script>     
 </body>
 </html>
+

@@ -1,5 +1,3 @@
-redis
-channels
-channels_redis
 daphne
+channels_redis
 whitenoise
