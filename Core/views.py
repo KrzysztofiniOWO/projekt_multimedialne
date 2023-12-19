@@ -35,8 +35,3 @@ def kelner_receipt(request):
 
 def kelner_go_back_action(request):
     return render(request, 'Users/kelner_index.html')
-
-
-
-
-

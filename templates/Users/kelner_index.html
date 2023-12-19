@@ -9,11 +9,63 @@
 <body>
     <header>
     </header>
+    <div>
+        <p id="log"></p>
+    </div>
     <div class="centered-buttons">
         <a href="{% url 'kelner_menu' %}"><button class="green-button">Wyświetl menu</button></a>
         <a href="{% url 'kelner_map' %}"><button class="green-button">Wyświetl mapę lokalu</button></a>
         <a href="{% url 'kelner_add_order' %}"><button class="green-button">Wprowadź zamówienie</button></a>
         <a href="{% url 'kelner_receipt' %}"><button class="green-button">Wyślij rachunek</button></a>
     </div>
+    <script>
+        const notificationSocket = new WebSocket(
+            'ws://' + window.location.host + '/ws/notification/'
+        );
+      
+        notificationSocket.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            createNotificationBubble(data.message);
+        };
+        
+        const activeBubbles = [];
+
+        function createNotificationBubble(message) {
+            const bubble = document.createElement('div');
+            bubble.className = 'notification-bubble';
+            bubble.innerText = message;
+            document.body.appendChild(bubble);
+            
+            // Dodanie dymka do listy i aktualizacja pozycji
+            activeBubbles.push(bubble);
+            updateBubblePositions();
+        
+            // Usunięcie dymka po zakończeniu animacji i aktualizacja pozycji pozostałych
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+                const index = activeBubbles.indexOf(bubble);
+                activeBubbles.splice(index, 1);
+                updateBubblePositions();
+            });
+        }
+        
+        function updateBubblePositions() {
+            let offset = 10; // Początkowy offset dla pierwszego dymka
+            activeBubbles.forEach(bubble => {
+                bubble.style.top = `${offset}px`; // Ustawienie pozycji dymka
+                offset += bubble.offsetHeight + 10; // Aktualizacja offsetu dla następnego dymka
+            });
+        }
+        
+        // Funkcja wywoływana po kliknięciu, aby dodać nowe powiadomienie
+        function addNotification(message) {
+            createNotificationBubble(message);
+        }
+        
+      
+    notificationSocket.onclose = function (e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+    </script>        
 </body>
 </html>

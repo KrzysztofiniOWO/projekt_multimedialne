@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,10 @@ INSTALLED_APPS = [
     'Core',
     'Items',
     'Users',
+
+    'channels',
+
+    'templates',
 ]
 
 AUTHENTICATION_BACKENDS =[
@@ -64,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'main_apka.urls'
@@ -84,8 +90,30 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'main_apka.wsgi.application'
+#WSGI_APPLICATION = 'main_apka.wsgi.application'
 
+ASGI_APPLICATION = 'main_apka.asgi.application'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        # Use 'redis://redis:6379/1' if 'redis' is the name in a Docker compose file or similar setup
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+            # Use [("redis", 6379)] if 'redis' is the name in a Docker compose file or similar setup
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -132,7 +160,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/uploaded_images/'
 MEDIA_ROOT = BASE_DIR / "uploaded_images"
