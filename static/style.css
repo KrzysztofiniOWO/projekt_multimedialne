@@ -207,3 +207,41 @@ label {
     margin-bottom: 10px; /* Dodanie odstępu na dole */
     display: block; /* Każde pole input jako osobny blok */
 }
+
+.notification-bubble {
+    position: fixed;
+    top: 10px; /* Odległość od góry */
+    left: 50%; /* Centralne wyrównanie */
+    transform: translateX(-50%) translateY(0); /* Centralne wyrównanie */
+    background-color: #c3ebc5; /* Tło */
+    color: white; /* Kolor tekstu */
+    padding: 8px 16px; /* Zmniejszone wypełnienie */
+    border-radius: 4px; /* Lekkie zaokrąglenie rogów */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtelny cień */
+    width: 400px;
+    max-width: 30%; /* Maksymalna szerokość dymka */
+    height: 100px;
+    box-sizing: border-box;
+    text-align: center; /* Wyśrodkowany tekst */
+    font-size: 20px; /* Jeszcze mniejsza wielkość czcionki */
+    margin-top: 5px; /* Mniejszy odstęp między kolejnymi powiadomieniami */
+    animation: fade-in 7s ease forwards; /* Animacja pojawiania się i znikania */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid green; 
+    background: linear-gradient(120deg, #33691e, #4CAF50); /* Gradientowe tło */
+    transition: transform 0.4s, opacity 0.4s; /* Animacja przejścia dla płynności */
+    will-change: transform, opacity; /* Optymalizacja dla płynnych animacji */
+    overflow: hidden; /* Zapobieganie wystawaniu zawartości poza dymek */
+}
+
+.notification-bubble:hover::after {
+    opacity: 1; /* Podświetlenie pojawia się po najechaniu */
+}
+
+/* Stylowanie wejścia i wyjścia powiadomienia */
+@keyframes fade-in {
+    0%, 100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
