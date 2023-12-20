@@ -40,6 +40,8 @@
             activeBubbles.push(bubble);
             updateBubblePositions();
         
+            playNotificationSound();
+
             // Usunięcie dymka po zakończeniu animacji i aktualizacja pozycji pozostałych
             bubble.addEventListener('animationend', () => {
                 bubble.remove();
@@ -47,6 +49,11 @@
                 activeBubbles.splice(index, 1);
                 updateBubblePositions();
             });
+        }
+
+        function playNotificationSound() {
+            const audio = new Audio('/static/rura.mp3'); // Ścieżka do pliku dźwiękowego
+            audio.play();
         }
         
         function updateBubblePositions() {
