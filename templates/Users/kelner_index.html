@@ -19,10 +19,11 @@
         <a href="{% url 'kelner_receipt' %}"><button class="green-button">Wyślij rachunek</button></a>
     </div>
     <script>
+        const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
         const notificationSocket = new WebSocket(
-            'ws://' + window.location.host + '/ws/notification/'
+            wsScheme + '://' + window.location.host + '/ws/notification/'
         );
-      
+            
         notificationSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
             createNotificationBubble(data.message);

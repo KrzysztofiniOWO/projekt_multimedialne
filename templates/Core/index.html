@@ -15,8 +15,9 @@
         <a href="{% url 'newsletter_page' %}"><button class="yellow-button">Zapisz się do newslettera</button></a>
     </div>
     <script>
+        const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
         const notificationSocket = new WebSocket(
-            'ws://' + window.location.host + '/ws/notification/'
+            wsScheme + '://' + window.location.host + '/ws/notification/'
         );
       
         notificationSocket.onclose = function (e) {
