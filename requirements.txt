@@ -1,3 +1,4 @@
 daphne
+django_redis
 channels_redis
 whitenoise
