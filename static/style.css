@@ -245,3 +245,39 @@ label {
     0%, 100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
     10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
+
+.notification-bubble {
+    position: fixed;
+    top: -100px; /* Ukryj powiadomienia na początku */
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: top 0.5s ease-in-out;
+}
+
+/* Styl dla listy powiadomień */
+#notification-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#notification-list li {
+    margin-bottom: 10px;
+}
+
+#notification-list button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#notification-list button:hover {
+    background-color: #c9302c;
+}
