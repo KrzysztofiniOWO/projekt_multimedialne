@@ -40,6 +40,10 @@
         const activeBubbles = [];
         const notificationList = document.getElementById('notification-list');
 
+        // Pobierz listę powiadomień z Local Storage po załadowaniu strony
+        const storedNotifications = JSON.parse(localStorage.getItem('notifications')) || [];
+        storedNotifications.forEach(message => addNotificationToList(message));
+
         function showNotifications() {
             // Funkcja do wyświetlania powiadomień z listy
             notificationList.style.display = 'block';
@@ -53,21 +57,50 @@
         }
 
         function addNotificationToList(message) {
-            // Funkcja do dodawania nowego powiadomienia do listy
-            const li = document.createElement('li');
-            li.textContent = message;
-            
-            // Dodanie przycisku do usuwania powiadomienia
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Usuń';
-            deleteButton.onclick = function () {
-                li.remove();
-                updateBubblePositions(); // Aktualizacja pozycji po usunięciu powiadomienia
-            };
+        // Usuń fragment tekstu "Usuń" z każdego powiadomienia
+        const cleanedMessage = message.replace('Usuń', '');
 
-            li.appendChild(deleteButton);
+        // Sprawdzamy, czy powiadomienie już istnieje w liście
+        const existingNotification = Array.from(notificationList.children)
+            .find(li => li.textContent === cleanedMessage);
+
+        // Dodajemy nowe powiadomienie tylko jeśli nie istnieje jeszcze na liście
+        if (!existingNotification) {
+            const li = document.createElement('li');
+            li.textContent = cleanedMessage;
+
+            // Sprawdzamy, czy dla danego powiadomienia nie istnieje już przycisk "Usuń"
+            const existingDeleteButton = activeBubbles.find(bubble => bubble.innerText === cleanedMessage)
+                ?.querySelector('button');
+
+            // Dodanie przycisku do usuwania powiadomienia tylko jeśli nie istnieje
+            if (!existingDeleteButton) {
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Usuń';
+                deleteButton.onclick = function () {
+                    li.remove();
+                    updateBubblePositions();
+                    updateLocalStorage(); // Aktualizacja Local Storage po usunięciu powiadomienia
+                };
+                li.appendChild(deleteButton);
+            }
+
             notificationList.appendChild(li);
+            updateLocalStorage(); // Aktualizacja Local Storage po dodaniu powiadomienia
         }
+    }
+
+
+        function updateLocalStorage() {
+            // Aktualizuj Local Storage po każdej zmianie w liście powiadomień
+            const notifications = Array.from(notificationList.children).map(li => li.textContent);
+            localStorage.setItem('notifications', JSON.stringify(notifications));
+        }
+
+        window.addEventListener('beforeunload', () => {
+            // Zapisz listę powiadomień do Local Storage przed odświeżeniem strony
+            updateLocalStorage();
+        });
 
         function createNotificationBubble(message) {
             const bubble = document.createElement('div');
