@@ -1,19 +1,41 @@
 from django.shortcuts import render
 
+codes_list = ["4ZN52", "77JRE", "QYFNA", "2KK9B", "B7GEG", "998ZK"]
+
+# Mapowanie kodów do numerów stolików
+code_to_table_map = {code: index + 1 for index, code in enumerate(codes_list)}
+
 def index(request):
-    return render(request, 'Core/index.html')
+    # Przykład wykorzystania wartości z sesji w widoku 'index'
+    code = request.session.get('user_code', '')
+    return render(request, 'Core/index.html', {'code': code})
+
+def user(request):
+    code = request.GET.get('code', '')
+    if code:
+        request.session['user_code'] = code  # Zapisz kod w sesji jeśli jest dostępny
+        table_number = code_to_table_map.get(code)
+    else:
+        code = request.session.get('user_code', '')  # Pobierz kod z sesji jeśli nie ma go w URL
+        table_number = code_to_table_map.get(code, None)
+    return render(request, 'Core/user.html', {'code': code, 'table_number': table_number})
 
 def call_page(request):
-    return render(request, 'Core/call_page.html')
+    code = request.session.get('user_code', '')  # Pobierz kod z sesji
+    return render(request, 'Core/call_page.html', {'code': code})
 
 def go_back_action(request):
-    return render(request, 'Core/index.html')
+    code = request.session.get('user_code', '')  # Pobierz kod z sesji
+    return render(request, 'Core/index.html', {'code': code})
 
 def menu_page(request):
-    return render(request, 'Core/menu_page.html')
+    code = request.session.get('user_code', '')  # Pobierz kod z sesji
+    return render(request, 'Core/menu_page.html', {'code': code})
 
 def newsletter_page(request):
-    return render(request, 'Core/newsletter_page.html')
+    code = request.session.get('user_code', '')  # Pobierz kod z sesji
+    return render(request, 'Core/newsletter_page.html', {'code': code})
+
 
 def kelner_menu(request):
     return render(request, 'Users/kelner_menu.html')

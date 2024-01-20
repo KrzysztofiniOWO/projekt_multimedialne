@@ -1,41 +1,75 @@
-{% load static %}
-
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
-    <title>Your Webpage</title>
-    <link rel="stylesheet" href="{% static '../static/style.css' %}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formularz kodu</title>
+<script>
+    // Function to validate the entered code
+    function validateCode() {
+        var enteredCode = document.getElementsByName("code")[0].value;
+        var codesList = ["4ZN52", "77JRE", "QYFNA", "2KK9B", "B7GEG", "998ZK"];
+
+        // Check if the entered code is in the list
+        if (codesList.includes(enteredCode)) {
+            return true; // Allow form submission
+        } else {
+            alert("Invalid code. Please enter a valid code from the list.");
+            return false; // Prevent form submission
+        }
+    }
+</script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .input-group {
+        margin-bottom: 10px;
+    }
+    input[type="text"] {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: calc(100% - 22px);
+    }
+    input[type="submit"] {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
 </head>
 <body>
-    <div class="centered-buttons">
-        <a href="{% url 'call_page' %}"><button class="green-button" id="button1">Zamów posiłek</button></a>
-        <a href="{% url 'call_page' %}"><button class="green-button" id="button2">Wezwij kelnera</button></a>
-        <a href="{% url 'call_page' %}"><button class="green-button" id="button3">Zapłać</button></a>
-        <a href="{% url 'menu_page' %}"><button class="green-button" >Wyświetl menu</button></a>
-        <a href="{% url 'newsletter_page' %}"><button class="yellow-button">Zapisz się do newslettera</button></a>
-    </div>
-    <script>
-        const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
-        const notificationSocket = new WebSocket(
-            wsScheme + '://' + window.location.host + '/ws/notification/'
-        );
-      
-        notificationSocket.onclose = function (e) {
-            console.error('Chat socket closed unexpectedly');
-        };
-      
-        function setupButton(buttonId, baseMessage) {
-            document.querySelector(buttonId).onclick = function (e) {
-                var tableNumber = Math.floor(Math.random() * 20) + 1; // Losowy numer stolika od 1 do 20
-                var newMessage = baseMessage.replace('9', tableNumber); // Zastąpienie numeru 9 wylosowanym numerem
-                notificationSocket.send(JSON.stringify({ 'message': newMessage }));
-            };
-        }
-        
-        setupButton('#button1', 'Klient ze stolika nr 9 chce złożyć zamówienie!');
-        setupButton('#button2', 'Klient ze stolika nr 9 prosi o podejście kelnera!');
-        setupButton('#button3', 'Klient ze stolika nr 9 chce zapłacić za zamówienie!');        
-    </script>     
+
+<div class="container">
+    <form action="user" method="get" onsubmit="return validateCode()">
+        <div class="input-group">
+            <input type="password" name="code" placeholder="Wpisz swój kod">
+        </div>
+        <div class="input-group">
+            <input type="submit" value="Wyślij kod">
+        </div>
+    </form>    
+</div>
+
 </body>
 </html>
-

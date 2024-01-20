@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Webpage</title>
+    <link rel="stylesheet" href="{% static '../static/style.css' %}">
+    <style>
+        /* Inne style... */
+
+        /* Styl dla wyświetlenia kodu */
+        .code-display {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50; /* Zielone tło */
+            color: white; /* Biały tekst */
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 0.9em;
+        }
+
+        /* Styl dla całej strony (jeśli potrzebny) */
+        body {
+            margin: 0;
+            /* Inne style... */
+        }
+
+        /* Style dla innych elementów... */
+    </style>
+</head>
+<body>
+    <div class="code-display" id="displayedCode">
+        Twój kod: {{ request.session.user_code }}  <!-- Użyj zmiennej 'code' przekazanej z widoku -->
+    </div>
+    <div class="centered-buttons">
+        <a href="{% url 'call_page' %}"><button class="green-button" id="button1">Zamów posiłek</button></a>
+        <a href="{% url 'call_page' %}"><button class="green-button" id="button2">Wezwij kelnera</button></a>
+        <a href="{% url 'call_page' %}"><button class="green-button" id="button3">Zapłać</button></a>
+        <a href="{% url 'menu_page' %}"><button class="green-button" >Wyświetl menu</button></a>
+        <a href="{% url 'newsletter_page' %}"><button class="yellow-button">Zapisz się do newslettera</button></a>
+    </div>
+    <script>
+        const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+        const notificationSocket = new WebSocket(
+            wsScheme + '://' + window.location.host + '/ws/notification/'
+        );
+    
+        notificationSocket.onclose = function (e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+    
+        function setupButton(buttonId, messageTemplate) {
+            document.querySelector(buttonId).onclick = function (e) {
+                // Użyj 'tableNumber' zamiast losowego numeru
+                const tableNumber = "{{ table_number }}"; // Pobierz numer stolika z szablonu Django
+                if (tableNumber) {
+                    var newMessage = messageTemplate.replace('9', tableNumber);
+                    notificationSocket.send(JSON.stringify({ 'message': newMessage }));
+                } else {
+                    console.error('Table number is not set');
+                }
+            };
+        }
+    
+        setupButton('#button1', 'Klient ze stolika nr 9 chce złożyć zamówienie!');
+        setupButton('#button2', 'Klient ze stolika nr 9 prosi o podejście kelnera!');
+        setupButton('#button3', 'Klient ze stolika nr 9 chce zapłacić za zamówienie!');
+    </script> 
+</body>
+</html>
+
